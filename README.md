@@ -1,6 +1,6 @@
 # n8n-nodes-data-gouv
 
-## Resource
+## Resources
 
 ### Address
 

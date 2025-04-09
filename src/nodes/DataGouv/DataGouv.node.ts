@@ -32,6 +32,7 @@ export class DataGouv implements INodeType {
 		defaults: {
 			name: 'Data Gouv',
 		},
+		usableAsTool: true,
 		inputs: [NodeConnectionType.Main],
 		outputs: [NodeConnectionType.Main],
 		properties: [

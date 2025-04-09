@@ -48,11 +48,11 @@ export class ApiCompanyConnector {
 
 			const response = await apiSearchCompanyRequest.call(this, searchValue, page, perPage);
 
-			if (Array.isArray(response.results) && response.results.length > 0) {
-				returnData.push({
-					json: response.results,
-				});
-			}
+			const results = Array.isArray(response.results) ? response.results : [];
+
+			results.forEach((company) => {
+				returnData.push({ json: company });
+			});
 		}
 
 		return [returnData];

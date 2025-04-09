@@ -10,7 +10,7 @@ Configuration
 
 ![configuration.png](docs/configuration.png)
 
-## Compilation
+## Compile
 
 ```shell
 docker run -it --rm \

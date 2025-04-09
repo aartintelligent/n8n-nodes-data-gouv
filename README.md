@@ -19,3 +19,7 @@ Search Address
 Search Company
 
 ![search_company.png](docs/search_company.png)
+
+![search_company_agent.png](docs/search_company_agent.png)
+
+![search_company_agent_result.png](docs/search_company_agent_result.png)

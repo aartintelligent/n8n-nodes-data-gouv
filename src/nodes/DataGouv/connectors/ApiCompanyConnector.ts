@@ -2,6 +2,7 @@ import {
 	IExecuteFunctions,
 	INodeExecutionData,
 	IRequestOptions,
+	IDataObject,
 	NodeApiError,
 } from 'n8n-workflow';
 
@@ -50,7 +51,7 @@ export class ApiCompanyConnector {
 
 			const results = Array.isArray(response.results) ? response.results : [];
 
-			results.forEach((company) => {
+			results.forEach((company: IDataObject) => {
 				returnData.push({ json: company });
 			});
 		}

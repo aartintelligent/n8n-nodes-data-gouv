@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/aartintelligent/n8n-nodes-prestashop.git"
+    "url": "https://github.com/aartintelligent/n8n-nodes-data-gouv.git"
   },
   "main": "index.js",
   "scripts": {

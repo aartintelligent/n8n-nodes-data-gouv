@@ -1,0 +1,48 @@
+{
+  "name": "n8n-nodes-data-gouv",
+  "version": "1.0.0",
+  "description": "N8n Nodes data gouv Connector",
+  "keywords": [
+    "n8n-community-node-package"
+  ],
+  "license": "MIT",
+  "homepage": "https://www.aartintelligent.fr",
+  "author": {
+    "name": "Aurelien andre",
+    "email": "aurelien.andre@aartintelligent.fr"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aartintelligent/n8n-nodes-prestashop.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "nodes": [
+      "dist/nodes/DataGouv/DataGouv.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.14",
+    "@typescript-eslint/parser": "~5.45",
+    "eslint-plugin-n8n-nodes-base": "^1.11.0",
+    "gulp": "^5.0.0",
+    "n8n-workflow": "*",
+    "prettier": "^2.7.1",
+    "typescript": "~4.8.4"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}

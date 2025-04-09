@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-data-gouv",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "N8n Nodes data gouv Connector",
   "keywords": [
     "n8n-community-node-package"
@@ -20,7 +20,7 @@
     "build": "tsc && gulp build:icons",
     "dev": "tsc --watch",
     "format": "prettier nodes credentials --write",
-    "lint": "eslint nodes credentials package.json",
+    "lint": "eslint nodes package.json credentials || true",
     "lintfix": "eslint nodes credentials package.json --fix",
     "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
   },

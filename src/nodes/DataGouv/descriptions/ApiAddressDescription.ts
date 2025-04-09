@@ -27,11 +27,35 @@ export const dataGouvAddressOperation: INodeProperties[] = [
 
 export const dataGouvAddressDescription: INodeProperties[] = [
 	{
-		displayName: 'Search Value',
-		name: 'searchValue',
+		displayName: 'Street',
+		name: 'q',
 		type: 'string',
 		default: '',
 		required: true,
+		displayOptions: {
+			show: {
+				resource: ['address'],
+				operation: ['search_address'],
+			},
+		},
+	},
+	{
+		displayName: 'Zip',
+		name: 'postcode',
+		type: 'string',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: ['address'],
+				operation: ['search_address'],
+			},
+		},
+	},
+	{
+		displayName: 'Autocomplete',
+		name: 'autocomplete',
+		type: 'boolean',
+		default: true,
 		displayOptions: {
 			show: {
 				resource: ['address'],

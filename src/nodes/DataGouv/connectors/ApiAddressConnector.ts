@@ -2,12 +2,15 @@ import {
 	IExecuteFunctions,
 	INodeExecutionData,
 	IRequestOptions,
+	IDataObject,
 	NodeApiError,
 } from 'n8n-workflow';
 
 export async function apiSearchAddressRequest(
 	this: IExecuteFunctions,
-	searchValue: string,
+	q: string,
+	postcode: string,
+	autocomplete: boolean,
 	limit: number,
 ): Promise<any> {
 	try {
@@ -16,7 +19,9 @@ export async function apiSearchAddressRequest(
 			method: 'GET',
 			url: 'https://api-adresse.data.gouv.fr/search',
 			qs: {
-				q: searchValue,
+				q: q,
+				postcode: postcode,
+				autocomplete: autocomplete,
 				limit: limit,
 			},
 			json: true,
@@ -38,19 +43,24 @@ export class ApiAddressConnector {
 
 		for (let i = 0; i < items.length; i++) {
 
-			const searchValue = (this.getNodeParameter('searchValue', i) as string).trim().replace(/ /g, '+');
+			const q = (this.getNodeParameter('q', i) as string).trim().replace(/ /g, '+');
+
+			const postcode = this.getNodeParameter('postcode', i) as string;
+
+			const autocomplete = this.getNodeParameter('autocomplete', i) as boolean;
 
 			const limit = this.getNodeParameter('limit', i) as number;
 
-			const response = await apiSearchAddressRequest.call(this, searchValue, limit);
+			const response = await apiSearchAddressRequest.call(this, q, postcode, autocomplete, limit);
 
-			if (Array.isArray(response.features) && response.features.length > 0) {
-				for (const feature of response.features) {
-					if (feature.properties) {
-						returnData.push({ json: feature.properties });
-					}
-				}
-			}
+			const features = response.features as Array<{ properties?: IDataObject }>;
+
+			returnData.push(
+				...features
+					.filter((f): f is { properties: IDataObject } => !!f.properties)
+					.map((f) => ({json: f.properties})),
+			);
+
 		}
 
 		return [returnData];

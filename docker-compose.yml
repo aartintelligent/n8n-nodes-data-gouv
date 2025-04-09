@@ -32,6 +32,7 @@ services:
       - postgres
     volumes:
       - n8n_storage:/home/node/.n8n
+      #- ./src/dist:/home/node/.n8n/custom/n8n-nodes-data-gouv
     ports:
       - "5678:5678"
     depends_on:

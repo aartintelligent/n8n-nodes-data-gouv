@@ -5,7 +5,7 @@ import {
 	NodeApiError,
 } from 'n8n-workflow';
 
-export async function apiSearchRequest(
+export async function apiSearchCompanyRequest(
 	this: IExecuteFunctions,
 	searchValue: string,
 	page: number,
@@ -31,8 +31,8 @@ export async function apiSearchRequest(
 	}
 }
 
-export class ApiSearchCompanyConnector {
-	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
+export class ApiCompanyConnector {
+	async search(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 
 		const items = this.getInputData();
 
@@ -46,7 +46,7 @@ export class ApiSearchCompanyConnector {
 
 			const perPage = this.getNodeParameter('perPage', i, 10) as number;
 
-			const response = await apiSearchRequest.call(this, searchValue, page, perPage);
+			const response = await apiSearchCompanyRequest.call(this, searchValue, page, perPage);
 
 			if (Array.isArray(response.results) && response.results.length > 0) {
 				returnData.push({

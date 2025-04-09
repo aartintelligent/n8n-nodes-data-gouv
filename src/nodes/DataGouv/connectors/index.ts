@@ -1,7 +1,12 @@
 import {
-	ApiSearchCompanyConnector,
-} from './ApiSearchCompanyConnector';
+	ApiAddressConnector,
+} from './ApiAddressConnector';
+
+import {
+	ApiCompanyConnector,
+} from './ApiCompanyConnector';
 
 export {
-	ApiSearchCompanyConnector,
+	ApiAddressConnector,
+	ApiCompanyConnector,
 };

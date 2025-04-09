@@ -10,12 +10,15 @@ import {
 } from 'n8n-workflow';
 
 import {
+	dataGouvAddressDescription,
+	dataGouvAddressOperation,
 	dataGouvCompanyDescription,
 	dataGouvCompanyOperation,
 } from './descriptions';
 
 import {
-	ApiSearchCompanyConnector,
+	ApiAddressConnector,
+	ApiCompanyConnector,
 } from './connectors';
 
 export class DataGouv implements INodeType {
@@ -40,11 +43,17 @@ export class DataGouv implements INodeType {
 				noDataExpression: true,
 				options: [
 					{
+						name: 'Address',
+						value: 'address',
+					},
+					{
 						name: 'Company',
 						value: 'company',
 					},
 				],
 			},
+			...dataGouvAddressOperation,
+			...dataGouvAddressDescription,
 			...dataGouvCompanyOperation,
 			...dataGouvCompanyDescription,
 		],
@@ -58,13 +67,25 @@ export class DataGouv implements INodeType {
 
 		const operation = this.getNodeParameter('operation', 0);
 
+		if (resource === 'address') {
+
+			if (operation === 'search_address') {
+
+				const connector = new ApiAddressConnector();
+
+				return await connector.search.call(this);
+
+			}
+
+		}
+
 		if (resource === 'company') {
 
 			if (operation === 'search_company') {
 
-				const connector = new ApiSearchCompanyConnector();
+				const connector = new ApiCompanyConnector();
 
-				return await connector.execute.call(this);
+				return await connector.search.call(this);
 
 			}
 

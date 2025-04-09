@@ -32,7 +32,6 @@ export const dataGouvCompanyDescription: INodeProperties[] = [
 		type: 'string',
 		default: '',
 		required: true,
-		description: 'Name, siret, domain...',
 		displayOptions: {
 			show: {
 				resource: ['company'],

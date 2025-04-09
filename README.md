@@ -1,16 +1,16 @@
 # n8n-nodes-data-gouv
 
-## Usage
+## Resource
 
-Workflow
+### Address
 
-![workflow.png](docs/workflow.png)
+- Search Address
 
-Configuration
+### Company
 
-![configuration.png](docs/configuration.png)
+- Search Company
 
-## Compile
+## Compilation
 
 ```shell
 docker run -it --rm \
